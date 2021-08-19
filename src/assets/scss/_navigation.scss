@@ -5,13 +5,41 @@
     display: flex;
     justify-content: space-between;
     color: $text-color;
+    z-index: 100;
+    top: 0;
 
-    span{
+    .menu-title{
         font-size: 24px;
         font-weight: 400;
+        height: 100%;
         display: flex;
         align-items: center;
         margin-left: 30px;
+    }
+
+    .ion-ios-menu{
+        font-size: 36px;
+        width: 65px;
+        align-items: center;
+        cursor: pointer;
+        display: none;
+    }
+
+    .menu-content-container{
+        display: flex;
+        align-items: center;
+        padding-right: 30px;
+
+        .ant-avatar{
+            background: $background;
+            border: 1px solid $border;
+        }
+
+        .menu-avatar-name{
+            font-size: 18px;
+            margin-left: 15px;
+        }
+
     }
 
     ul{
@@ -20,9 +48,10 @@
         margin-block-end: 0;
         padding-inline-start: 0;
         display: flex;
+        justify-content: flex-end;
         align-items: center;
         list-style-type: none;
-        margin-right: 20px;
+        padding: 0 20px 0 50px;
 
         a{
             text-decoration: none;
@@ -33,6 +62,64 @@
             &:hover{
                 color: $text-link;
             }
+        }
+    }
+}
+
+@media screen and (max-width: 900px){
+    .site-navigation{
+        .menu-content-container{
+            width: 300px;
+            height: calc(100% - 65px);
+            background: white;
+            position: calc(100% - 65px);
+            background: white;
+            position: fixed;
+            top: 65px;
+            right: -300px;
+            transition: 340ms ease right;
+            flex-direction: column-reverse;
+            padding: 0;
+            padding-left: 30px;
+
+            
+
+            ul {
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 0;
+                padding-top: 10px;
+
+                li {
+                    height: 65px;
+                    display: flex;
+                    align-items: center;
+                    text-align: left;
+                }
+
+                a {
+                    width: 100%; 
+                    padding: 20px 15px;
+                }
+            }
+
+            .menu-avatar-container{
+                padding-top: 20px;
+                padding-bottom: 10px;
+                border-bottom: 3px solid $text-link;
+            }
+
+            ul, li, .menu-avatar-container {
+                width: 100%;
+            }
+
+            &.active{
+                    right: 0px;
+            }
+        }
+
+        .ion-ios-menu{
+            display: flex;
         }
     }
 }

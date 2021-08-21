@@ -1,3 +1,5 @@
+@import './abstracts/variables';
+
 .site-navigation{
     height: 65px;
     width: 100%;
@@ -5,6 +7,7 @@
     display: flex;
     justify-content: space-between;
     color: $text-color;
+    position: fixed;
     z-index: 100;
     top: 0;
 
@@ -72,9 +75,8 @@
             width: 300px;
             height: calc(100% - 65px);
             background: white;
-            position: calc(100% - 65px);
+            position:fixed;
             background: white;
-            position: fixed;
             top: 65px;
             right: -300px;
             transition: 340ms ease right;

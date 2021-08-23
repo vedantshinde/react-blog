@@ -54,7 +54,7 @@ export default function Navigation({user}){
 
     return(
         <nav ref={navBarRef} className='site-navigation'>
-            <span className='menu-title'>My React Blog</span>
+            <span className='menu-title'>Vedant's Blog</span>
             <div className={`menu-content-container ${menuActive && 'active'}`}>
                 <ul>
                     {

@@ -1,0 +1,18 @@
+{
+  "name": "react-blog-backend",
+  "version": "1.0.0",
+  "description": "A Koa.JS and GraphQL back-end for the react blog",
+  "main": "app.js",
+  "scripts": {
+    "start": "test"
+  },
+  "author": "Vedant Shinde",
+  "license": "ISC",
+  "dependencies": {
+    "@graphql-tools/schema": "^8.1.2",
+    "apollo-server-koa": "^3.1.2",
+    "graphql": "^15.5.1",
+    "koa": "^2.13.1",
+    "moment": "^2.29.1"
+  }
+}

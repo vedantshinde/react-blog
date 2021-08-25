@@ -4,13 +4,16 @@
   "description": "A Koa.JS and GraphQL back-end for the react blog",
   "main": "app.js",
   "scripts": {
-    "start": "test"
+    "start": "test",
+    "create-migration": "node ./database/actions/create-migration.js",
+    "run-migration": "node ./database/actions/run-migration.js"
   },
   "author": "Vedant Shinde",
   "license": "ISC",
   "dependencies": {
     "@graphql-tools/schema": "^8.1.2",
     "apollo-server-koa": "^3.1.2",
+    "bluebird": "^3.7.2",
     "dotenv": "^10.0.0",
     "graphql": "^15.5.1",
     "knex": "^0.95.10",

@@ -1,6 +1,7 @@
 INSERT INTO roles(title)
 VALUES 
 ('admin'),
+('blogger'),
 ('user');
 
 INSERT INTO permissions(action)
@@ -11,7 +12,8 @@ VALUES
 INSERT INTO role_permissions (role_id, permission_id)
 VALUES
 (1, 1),
-(1, 2);
+(1, 2),
+(2, 1);
 
 INSERT INTO users (role_id, email, first_name, last_name)
 VALUES
@@ -42,7 +44,7 @@ hetto youths how to dance. \n I’m sure it had a happy ending, and some warm mo
 (1, 'Brain Hacks for Learning to Program', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.', '', 'neuron.jpg', 1, 'Functional Programming', 'ES6', 'neuron.jpg','Image'),
 (1, 'React Vs Vue', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.', '', 'logo.png', 1, 'Functional Programming', 'ES6', 'logo.png','Image');
 
-INSERT INTO blog_post_comments (post_id, author_id, comment)
+INSERT INTO blog_post_comments (post_id, user_id, comment)
 VALUES
 (1, 1, 'Totally!'),
 (1, 1, 'Spot ON!!!');

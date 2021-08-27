@@ -4,6 +4,8 @@ import { Pagination } from "antd";
 import { TagRow } from "./";
 
 export default function PostGrid({ posts }) {
+
+
   const [pageSize, setPageSize] = useState(9);
   const [current, setCurrent] = useState(1);
 
@@ -36,7 +38,7 @@ export default function PostGrid({ posts }) {
               </Link>
             </figure>
 
-            <TagRow tags={post.categories} />
+            <TagRow tags={post.categories} tagColors={post.categoryColors}/>
             <h2>{post.title}</h2>
             <p className="author-text">
               <span>- {post.date}</span>

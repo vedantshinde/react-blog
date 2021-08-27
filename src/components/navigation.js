@@ -4,16 +4,20 @@ import { Avatar } from 'antd';
 
 const navLinks = [
     {
-        title: 'Home',
-        path: '/'
+        title: 'Books',
+        path: '/books'
     },
     {
-        title: 'Blog',
-        path: '/blog'
+        title: 'Entertainment',
+        path: '/entertainment'
     },
     {
-        title: 'Contact Me',
-        path: '/contact-me'
+        title: 'Life',
+        path: '/life'
+    },
+    {
+        title: 'Learnings',
+        path: '/learnings'
     },
     {
         title: 'Login',

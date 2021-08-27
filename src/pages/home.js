@@ -1,7 +1,12 @@
 import React from "react";
+import { useQuery } from "@apollo/react-hooks";
+
 import { PostMasonry, MasonryPost, PostGrid } from "../components/common";
-import trending from "../assets/mocks/trending";
-import featured from "../assets/mocks/featured";
+import {
+  GET_ALL_POSTS_QUERY,
+  GET_POSTS_BY_TYPE_QUERY,
+  GET_POSTS_BY_CATEGORIES_QUERY,
+} from "../queries/posts";
 
 const trendingConfig = {
   1: {
@@ -27,28 +32,70 @@ const featuredConfig = {
 const mergeStyles = function (posts, config) {
   posts.forEach((post, index) => {
     post.style = config[index];
-    post.description =
-      "Remember, if the time should come, when you have to make a choice between what is right and what is easy, remember what happened to a boy who was good, and kind, and brave, because he strayed across the path of Lord Voldemort. Remember Cedric Diggory.";
   });
 };
 
-const recentPosts = [...trending, ...featured, ...featured];
-
-mergeStyles(trending, trendingConfig);
-mergeStyles(featured, featuredConfig);
-
-// The last featured post is displayed seperately
-const lastFeaturedPost = featured.pop();
-
 export default function Home() {
+  const { data: allData, error: allPostsError } = useQuery(GET_ALL_POSTS_QUERY);
+
+  // The trending section is commented out.
+
+  // const {data: trendingData, error: trendingDataError} = useQuery(GET_POSTS_BY_TYPE_QUERY, {
+  //       variables: {
+  //           type: "trending"
+  //       }
+  //   })
+
+  const { data: featuredData, error: featuredPostsError } = useQuery(
+    GET_POSTS_BY_TYPE_QUERY,
+    {
+      variables: {
+        type: "featured",
+      },
+    }
+  );
+
+  let allPosts, featuredPosts, lastFeaturedPost;
+  // let trendingPosts
+
+  if (allPostsError || featuredPostsError) {
+    return "Oops! Something went sideways.";
+  }
+
+  if (allData && featuredData) {
+    allPosts = allData.posts;
+    featuredPosts = featuredData.posts;
+    // trendingPosts = trendingData.posts;
+
+    mergeStyles(featuredPosts, featuredConfig);
+    // mergeStyles(trendingPosts, trendingConfig);
+
+    // The last featured element is rendered seperately
+    lastFeaturedPost = featuredPosts.pop();
+  }
+
+  console.log(allPosts);
+
   return (
     <main className="home">
       <section className="container">
         <div className="row">
           <h1>Featured Posts</h1>
           <section className="featured-posts-container">
-            <PostMasonry posts={featured} columns={2} tagsOnTop={true} />
-            <MasonryPost post={lastFeaturedPost} tagsOnTop={true} />
+            {typeof featuredPosts !== "undefined" ? (
+              <>
+                <PostMasonry
+                  posts={featuredPosts}
+                  columns={2}
+                  tagsOnTop={true}
+                />
+                <MasonryPost post={lastFeaturedPost} tagsOnTop={true} />
+              </>
+            ) : (
+              <h1>Oops! Something went sideways.</h1>
+            )}
+            {/* <PostMasonry posts={featuredPosts} columns={2} tagsOnTop={true} />
+                <MasonryPost post={lastFeaturedPost} tagsOnTop={true} /> */}
           </section>
         </div>
       </section>
@@ -56,18 +103,22 @@ export default function Home() {
       <section className="bg-white">
         <section className="container">
           <div className="row">
-            <h1>Recent Posts</h1>
-            <PostGrid posts={recentPosts} columns={3} />
+            <h1>All Posts</h1>
+            {typeof allPosts !== "undefined" ? (
+              <PostGrid posts={allPosts} columns={3} />
+            ) : (
+              <h1>Oops! Something Went Sideways.</h1>
+            )}
           </div>
         </section>
       </section>
-
-      <section className="container">
-        <div className="row">
-          <h1>Trending Posts</h1>
-          <PostMasonry posts={trending} columns={3} />
-        </div>
-      </section>
+      {/*
+          <section className="container">
+            <div className="row">
+              <h1>Trending Posts</h1>
+              <PostMasonry posts={trendingPosts} columns={3} />
+            </div>
+          </section> */}
     </main>
   );
 }

@@ -19,17 +19,17 @@ INSERT INTO users (role_id, email, first_name, last_name)
 VALUES
 (1, 'vedantshinde101@gmail.com', 'Vedant', 'Shinde');
 
-INSERT INTO blog_categories (label, description)
+INSERT INTO blog_categories (label, labelColor, description)
 VALUES
-('Books', 'Book Reviews & reading lists'),
-('Personal Finance', 'My learnings in personal finance & lecture summaries.'),
-('Psychology', 'My learnings in psychology & lecture summaries.'),
-('Philosophy', 'My learnings in philosophy.'),
-('Meditations', 'Random thoughts & rants.'),
-('Life', 'Random Stories from my life'),
-('Music', 'My learinings in music. My fav bands, albums and songs.'),
-('Entertainment', 'TV show & movie reviews and discussions.'),
-('Writing', 'My learnings in writing.');
+('Books', '#FF3B30', 'Book Reviews & reading lists'),
+('Personal Finance', '#0071A4', 'My learnings in personal finance & lecture summaries.'),
+('Psychology', '#FF2D55', 'My learnings in psychology & lecture summaries.'),
+('Philosophy', '#34C759', 'My learnings in philosophy.'),
+('Meditations', '#409CFF', 'Random thoughts & rants.'),
+('Life', '#AF52FA', 'Random Stories from my life'),
+('Music', '#52006A', 'My learinings in music. My fav bands, albums and songs.'),
+('Entertainment', '#B42B51', 'TV show & movie reviews and discussions.'),
+('Writing', '#C36839', 'My learnings in writing.');
 
 INSERT INTO blog_posts (author_id, title, description, text, image, active, keyword1, keyword2, bg_src, bg_type)
 VALUES 
@@ -41,7 +41,7 @@ hetto youths how to dance. \n I’m sure it had a happy ending, and some warm mo
 (1, 'Software Engineer Salary in 2020', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.', '', 'money.jpg', 1, 'Functional Programming', 'ES6', 'money.jpg','Image'),
 (1, 'GraphQL vs REST', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.', '', 'apollo_graphql.png', 1, 'Functional Programming', 'ES6', 'apollo_graphql.png','Image'),
 (1, 'A Day in the Life of a Programmer', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.', '', 'puzzled_programmer.jpeg', 1, 'Functional Programming', 'ES6', 'puzzled_programmer.jpeg','Image'),
-(1, 'Brain Hacks for Learning to Program', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.', '', 'neuron.jpg', 1, 'Functional Programming', 'ES6', 'neuron.jpg','Image'),
+(1, 'Duplicate Article for increasing tile count', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.', '', 'neuron.jpg', 1, 'Functional Programming', 'ES6', 'neuron.jpg','Image'),
 (1, 'React Vs Vue', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.', '', 'logo.png', 1, 'Functional Programming', 'ES6', 'logo.png','Image');
 
 INSERT INTO blog_post_comments (post_id, user_id, comment)

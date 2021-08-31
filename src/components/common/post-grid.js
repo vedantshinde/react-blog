@@ -30,7 +30,7 @@ export default function PostGrid({ posts }) {
         {paginatedPosts.map((post, index) => (
           <div className="post-container" key={index}>
             <figure>
-              <Link to={post.link}>
+              <Link to={`/post/${post.id}`}>
                 <img
                   src={require(`../../assets/images/${post.image}`).default}
                   alt={post.image}
@@ -44,7 +44,7 @@ export default function PostGrid({ posts }) {
               <span>- {post.date}</span>
             </p>
             <p className="description-text">{post.description}</p>
-            <Link to={post.link}>Read More</Link>
+            <Link to={`/post/${post.id}`}>Read More</Link>
           </div>
         ))}
       </section>

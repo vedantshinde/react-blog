@@ -4,8 +4,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { PostMasonry, MasonryPost, PostGrid } from "../components/common";
 import {
   GET_ALL_POSTS_QUERY,
-  GET_POSTS_BY_TYPE_QUERY,
-  GET_POSTS_BY_CATEGORIES_QUERY,
+  GET_POSTS_BY_TYPE_QUERY
 } from "../queries/posts";
 
 const trendingConfig = {

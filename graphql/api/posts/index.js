@@ -3,8 +3,61 @@ const { errorHandler } = require("../utils");
 const intersection = require("lodash/intersection");
 
 module.exports = {
-  getPost: async (id) =>
-    await db.select("*").from("blog_posts").where({ id }).catch(errorHandler),
+  getPost: async (id) => {
+    const posts = db
+      .select("*")
+      .from("blog_posts")
+      .where({ id })
+      .catch(errorHandler);
+
+    const comments = await db
+      .select("*")
+      .from("blog_post_comments")
+      .where({ post_id: id })
+      .catch(errorHandler);
+
+    let commentAuthorIds = [...new Set(comments.map(({ user_id }) => user_id))];
+
+    let commentAuthors = await db
+      .select("*")
+      .from("users")
+      .whereIn("id", commentAuthorIds);
+
+    comments.forEach((comment) => {
+      let user = commentAuthors.find(({ id }) => id === comment.user_id);
+
+      comment.author = `${user.first_name} ${user.last_name}`;
+      comment.author_image = user.image;
+    });
+
+    let likes = db
+      .select("*")
+      .from("blog_post_likes")
+      .where({ post_id: id })
+      .catch(errorHandler);
+
+    let categories = await db
+      .select("*")
+      .from("blog_post_categories")
+      .leftJoin("blog_categories", "category_id", "blog_categories.id")
+      .where({ post_id: id })
+      .catch(errorHandler);
+
+    let [post] = await posts;
+
+    return {
+      ...post,
+      comments,
+      likes: await likes.length,
+      categories: categories.map(({ label }) => label),
+      categoryColors: categories.map(({labelColor}) => labelColor)
+    };
+  },
+
+  createPost: async (args) =>
+    await db.insert(args.data).then((res) => {
+      return res;
+    }),
 
   getPosts: async (type, categories) => {
     let query = db
@@ -47,7 +100,7 @@ module.exports = {
           .orderBy("likes", "desc")
           .limit(5),
 
-      featured: () => query.whereIn("blog_posts.id", [1, 2, 3, 4,5]),
+      featured: () => query.whereIn("blog_posts.id", [1, 2, 3, 4, 5]),
 
       recent: () => query.orderBy("updated_at", "desc").limit(5),
 
@@ -56,15 +109,18 @@ module.exports = {
 
     return qry
       .then((data) => {
-
-        data.map((post) =>{
-            if(post.categoryColors) post.categoryColors = post.categoryColors.split(',')
-        })
+        data.map((post) => {
+          if (post.categoryColors)
+            post.categoryColors = post.categoryColors.split(",");
+        });
 
         if (categories) {
-          return data.filter(
-            (post) =>{                       
-              return post.categories && intersection(post.categories.split(',').map(String), categories).length
+          return data.filter((post) => {
+            return (
+              post.categories &&
+              intersection(post.categories.split(",").map(String), categories)
+                .length
+            );
           });
         }
 

@@ -1,8 +1,6 @@
 import react from "react";
 
 export default function TagRow({ tags, tagColors }) {
-  console.log(tagColors)
-  console.log(tags)
   return (
     <div className="tags-container">
       {tags.map((tag, ind) => (

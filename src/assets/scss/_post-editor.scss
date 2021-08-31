@@ -1,0 +1,11 @@
+@import './abstracts/variables';
+
+.post-editor{
+    padding: 80px 30px;
+
+    .quill {
+        height: 70vh;
+        border: 1px solid #bbb;
+        border-radius: 4px;
+    }
+}

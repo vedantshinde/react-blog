@@ -19,7 +19,7 @@ const getPostsWithAuthors = (cb) => async (parent, args, context, info) => {
       [author.id]: `${author.first_name} ${author.last_name}`,
     }),
     {}
-  )
+  );
 
   return posts.map(({ categories, author_id, ...rest }, index) => ({
     categories: categories.split(","),
@@ -39,8 +39,16 @@ module.exports = {
           await PostService.getPosts("default", categories)
       ),
       getAllPosts: getPostsWithAuthors(
-        async() => await PostService.getPosts("default", null)
-      )
+        async () => await PostService.getPosts("default", null)
+      ),
+      getPost: async (parent, {id}) => {
+        const post = await PostService.getPost(id);
+
+        return post;
+      }
+    },
+    Mutation: {
+      createPost: async (parent, args) => await PostService.createPost(args),
     },
   },
   schema: fs

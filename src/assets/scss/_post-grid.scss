@@ -1,7 +1,7 @@
 .grid-pagination-container {
   .ant-pagination {
-    text-align: center;
-    padding-bottom: 50px;
+      text-align: center;
+      padding-bottom: 50px;
   }
 }
 
@@ -12,26 +12,24 @@
   grid-auto-rows: 1fr;
   padding-bottom: 50px;
 
-  figure{
+  figure {
       height: 100%;
-      width: auto;
       max-height: 280px;
   }
 
   img {
-    float: left;
-    position: relative;
-    border-radius: 5px;
-    overflow: hidden;
-    object-fit: cover;
-    object-position: center center;
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
-    max-height: 280px;
+      position: relative;
+      border-radius: 5px;
+      overflow: hidden;
+      object-fit: cover;
+      object-position: center center;
+      height: 100%;
+      width: 100%;
+      margin: 0 auto;
+      max-height: 280px;
   }
 
-  .post-container{
+  .post-container {
       display: flex;
       flex-direction: column;
 
@@ -39,11 +37,14 @@
           color: $text-light;
       }
 
-      .description-text{
+      .author-text a {
+          padding: 0 5px;
+      }
+
+      .description-text {
           font-size: 18px;
           font-weight: 400px;
           color: #555;
       }
-
   }
 }

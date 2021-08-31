@@ -2,11 +2,29 @@ type Query{
     getPostsByType(type: String): [Post]!
     getPostsByCategories(categories: [String]): [Post]!
     getAllPosts: [Post]!
+    getPost(id: ID!): Post
+}
+
+type Mutation{
+    createPost(data: PostInput): ID!
+}
+
+input PostInput{
+    title: String
+    text: String
+    categories: [String]
+    description: String
+    image: String
+    keyword1: String
+    keyword2: String
+    bg_src: String
+    bg_type: String
 }
 
 type Post{
     id: Int
     title: String
+    text: String
     updated_at: String
     description: String
     likes: String
@@ -15,6 +33,10 @@ type Post{
     categoryColors: [String]!
     author: String
     image: String
+    keyword1: String
+    keyword2: String
+    bg_src: String
+    bg_type: String
 }
 
 type Comment {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import {TagRow} from './';
 
 export default function MasonryPost({post, tagsOnTop}){
@@ -11,7 +12,7 @@ export default function MasonryPost({post, tagsOnTop}){
     const style = windowWidth > 900 ? {...imageBackground, ...post.style} : imageBackground;
 
     return (
-        <a className='masonry-post overlay' style={style} href={post.link} >
+        <Link className='masonry-post overlay' style={style} to={`/post/${post.id}`} >
             <div className='image-text' style={{justifyContent: tagsOnTop ? 'space-between': 'flex-end'}}>
                 <TagRow tags={post.categories} tagColors={post.categoryColors}/>
                 <div>
@@ -19,6 +20,6 @@ export default function MasonryPost({post, tagsOnTop}){
                     <span className='image-date'>{post.date}</span>
                 </div>
             </div>
-        </a>
+        </Link>
     )
 }
